@@ -73,27 +73,21 @@ class Tablero:
         return False
     
     def movimiento_valido_peon(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
-        # Implementar lógica de movimiento válido para el peón
         pass
     
     def movimiento_valido_torre(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
-        # Implementar lógica de movimiento válido para la torre
         pass
     
     def movimiento_valido_caballo(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
-        # Implementar lógica de movimiento válido para el caballo
         pass
     
     def movimiento_valido_alfil(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
-        # Implementar lógica de movimiento válido para el alfil
         pass
     
     def movimiento_valido_reina(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
-        # Implementar lógica de movimiento válido para la reina
         pass
     
     def movimiento_valido_rey(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
-        # Implementar lógica de movimiento válido para el rey
         pass
     
     def realizar_movimiento(self, fila_inicial, columna_inicial, fila_destino, columna_destino):
