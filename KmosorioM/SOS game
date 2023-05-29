@@ -55,14 +55,14 @@ def play_sos():
             total_moves += 1
             if check_win(board):
                 display_board(board)
-                print("Player", players[current_player], "wins!")
+                print("Jugador", players[current_player], "Gana!")
                 break
             elif total_moves == 9:
                 display_board(board)
-                print("It's a tie!")
+                print("Empate!")
                 break
             current_player = 1 - current_player
         else:
-            print("Invalid move. Try again.")
+            print("movimiento invalido, animal")
 
 play_sos()
