@@ -14,7 +14,7 @@ def binary_search(l, objeto, min=None, max=None):
 
     # revisaremos si l[punto_medio] == objeto, de lo contrario, puede encontrarse si
     # el objeto estará a la izquierda o a  la derecha del punto medio
-    # sabemos que todo a la izquierda del midpointes menor que el punto medio
+    # sabemos que todo a la izquierda del midpoint o punto medio es menor que el punto medio
     # y todo a la derecha, es mayor
     
     if l[punto_medio] == objeto:
@@ -24,18 +24,26 @@ def binary_search(l, objeto, min=None, max=None):
     else:
         return binary_search(l, objeto, punto_medio + 1, max)
     
+    #Ahora, permitimos que se use como módulo y como script. 
+    #A continuación, usamos la función input para solicitar al usuario
+    #la lista que desee ingresar
 if __name__=='__main__':
     l=[]
 valor=int(input("Ingresar valor de la lista (ingrese 0 para finalizar):"))
+
 
 while valor!=0:
     l.append(valor)
     valor=int(input("Ingresar valor de la lista (ingrese 0 para finalizar):"))
 
+    #La función append permite recopilar los fatos ingresados. Es decir  mientras el usuario
+    #ingrese valores distintos a 0, el programa "guarda" los datos.
 print(l)
 print("Ingrese el número que desea comprobar si pertenece a la lista")
 objeto = int(input())
 
+#Llamamos a la función binary_search, definida anteriormente para verificar 
+#el índice del elemento
 if binary_search(l, objeto) > -1:
     print(f"Sí pertenece y está en el índice {binary_search(l, objeto)}")
 else: 
