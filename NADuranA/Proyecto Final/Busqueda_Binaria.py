@@ -1,4 +1,4 @@
-## Se define la funcion de busqueda binaria
+## Definamos la funcion de busqueda binaria
 def busqueda_binaria(lista, n, objetivo):
 
 	## se define el inicio
@@ -9,7 +9,7 @@ def busqueda_binaria(lista, n, objetivo):
 	izq = 0
 	der = n - 1
 
-	## repitiendo sobre la lista
+	## se repite sobre la lista
 	while i < n:
 		## buscando el punto medio
 		punto_medio = (izq + der) // 2
@@ -28,7 +28,7 @@ def busqueda_binaria(lista, n, objetivo):
 	return False
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': #permitimos que se pueda usar como un módulo
 	## iniciando el proceso para que el usuario provea una lista 
 	lista =  list(input("inserte la lista de numeros ordenados en la que desea buscar: "))
 	n = len(lista)
