@@ -1,0 +1,68 @@
+def display_board(board):
+    print("    1   2   3")
+    print("  -------------")
+    for i in range(len(board)):
+        row = f"{i+1} |"
+        for j in range(len(board[i])):
+            row += f" {board[i][j]} |"
+        print(row)
+        print("  -------------")
+
+def check_win(board):
+    rows = len(board)
+    cols = len(board[0])
+
+    # Verificar filas
+    for row in board:
+        if 'SOS' in ''.join(row):
+            return True
+
+    # Verificar columnas
+    for j in range(cols):
+        col = ''.join(board[i][j] for i in range(rows))
+        if 'SOS' in col:
+            return True
+
+    # Verificar diagonales
+    for i in range(rows - 2):
+        for j in range(cols - 2):
+            diagonal = ''.join(board[i+k][j+k] for k in range(3))
+            if diagonal == 'SOS':
+                return True
+
+    for i in range(2, rows):
+        for j in range(cols - 2):
+            diagonal = ''.join(board[i-k][j+k] for k in range(3))
+            if diagonal == 'SOS':
+                return True
+
+    return False
+
+def play_sos():
+    board = [[' ' for _ in range(3)] for _ in range(3)]
+    players = ['S', 'O']
+    current_player = 0
+    total_moves = 0
+
+    while True:
+        display_board(board)
+
+        row = int(input("Enter row (1-3): "))
+        col = int(input("Enter column (1-3): "))
+
+        if board[row-1][col-1] == ' ':
+            board[row-1][col-1] = players[current_player]
+            total_moves += 1
+            if check_win(board):
+                display_board(board)
+                print("Player", players[current_player], "wins!")
+                break
+            elif total_moves == 9:
+                display_board(board)
+                print("It's a tie!")
+                break
+            current_player = 1 - current_player
+        else:
+            print("Invalid move. Try again.")
+
+play_sos()
