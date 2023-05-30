@@ -35,7 +35,7 @@ if __name__=='__main__':
 n = int(input("Ingrese la cantidad de números enteros que quiere enlistar:"))
 
 for x in range(n):
-    valor=int(input("Ingrese el primer número de la lista y pulse "Enter" para digitar el siguiente "))
+    valor=int(input("Ingrese el número de la lista y pulse Enter para digitar el siguiente "))
     l.append(valor)
 
 print(l)
