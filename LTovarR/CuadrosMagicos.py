@@ -1,3 +1,5 @@
+git commit-m 
+Basado en el rombo de siames
 def crear_cuadro_magico(n):
     if n % 2 == 0:
         print("La dimensión debe ser impar.")
