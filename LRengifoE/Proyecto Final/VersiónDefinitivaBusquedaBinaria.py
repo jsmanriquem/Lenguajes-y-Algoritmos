@@ -1,3 +1,7 @@
+#Esta versión DEFINITIVA del proyecto de búsqueda binaria solicita al usuario una lista de números enteros no repetidos y un número que desee conocer si pertenece a la lista. 
+#Adicionalmente, el programa indicará el índice del número en el arreglo.
+
+
 def binary_search(l, objeto, min=None, max=None):
     if min is None:
         min = 0
@@ -7,13 +11,12 @@ def binary_search(l, objeto, min=None, max=None):
     if max < min:
         return -1
 
-    # example l = [1, 3, 5, 10, 12]  # should return 3
     punto_medio = (min + max) // 2  # 2
 
-    # we'll check if l[midpoint] == target, and if not, we can find out if
-    # target will be to the left or right of midpoint
-    # we know everything to the left of midpoint is smaller than the midpoint
-    # and everything to the right is larger
+    # revisaremos si l[punto_medio] == objeto, de lo contrario, puede encontrarse si
+    # el objeto estará a la izquierda o a  la derecha del punto medio
+    # sabemos que todo a la izquierda del midpoint o punto medio es menor que el punto medio
+    # y todo a la derecha, es mayor
     
     if l[punto_medio] == objeto:
         return punto_medio
@@ -23,6 +26,10 @@ def binary_search(l, objeto, min=None, max=None):
         # target > l[midpoint]
         return binary_search(l, objeto, punto_medio + 1, max)
     
+    
+        #Ahora, permitimos que se use como módulo y como script. 
+    #A continuación, usamos la función input para solicitar al usuario
+    #la lista que desee ingresar
 if __name__=='__main__':
     l=[]
 n = int(input("Ingrese la cantidad de números enteros que quiere enlistar:"))
