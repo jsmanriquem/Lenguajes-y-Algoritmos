@@ -1,7 +1,7 @@
 #Esta versión DEFINITIVA del proyecto de búsqueda binaria solicita al usuario una lista de números enteros no repetidos y un número que desee conocer si pertenece a la lista. 
 #Adicionalmente, el programa indicará el índice del número en el arreglo.
 #La funcion busqueda binaria funciona para listas de numeros ordenados sin valores repetidos, tenga eso en cuenta al usar esta funcion.
-#
+#  Para conocer más sobre este método visite https://mathworld.wolfram.com/BinarySearch.html
 #
 def binary_search(l, objeto, min=None, max=None):
     if min is None:
@@ -32,7 +32,7 @@ def binary_search(l, objeto, min=None, max=None):
     #A continuación, usamos la función input para solicitar al usuario
     #la lista que desee ingresar
 if __name__=='__main__':
-    print("Bienvenido a busqueda binaria, este script te permite encontrar si un elemento pertence a una lista ordenada y su posicion en la misma, tenga en cuenta que la lista que introduzcano puede tener elementos repetidos")
+    print("Bienvenido a busqueda binaria, este programa te permite encontrar si un elemento pertence a una lista ordenada y su posicion en la misma, tenga en cuenta que la lista que introduzcano puede tener elementos repetidos")
     l=[]
 n = int(input("Ingrese la cantidad de números enteros que quiere enlistar:"))
 
@@ -45,6 +45,6 @@ print("Ingrese el número que desea verificar su existencia en la lista")
 objeto = int(input())
 
 if binary_search(l, objeto) > -1:
-    print(f"Sí pertenece y está en la posición {binary_search(l, objeto) + 1}")
+    print(f"Sí pertenece y está en la posición {binary_search(l, objeto) + 1}. Para conocer más sobre este método visite https://mathworld.wolfram.com/BinarySearch.html")
 else: 
-    print("No está en la lista")
+    print("No está en la lista. Para conocer más sobre este método visite https://mathworld.wolfram.com/BinarySearch.html")
