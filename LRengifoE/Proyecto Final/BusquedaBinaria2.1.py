@@ -32,7 +32,7 @@ def binary_search(l, objeto, min=None, max=None):
     #A continuación, usamos la función input para solicitar al usuario
     #la lista que desee ingresar
 if __name__=='__main__':
-    print("Bienvenido a busqueda binaria, este programa te permite encontrar si un elemento pertence a una lista ordenada y su posicion en la misma, tenga en cuenta que la lista que introduzcano puede tener elementos repetidos")
+    print("Bienvenido a busqueda binaria, este programa te permite encontrar si un elemento pertence a una lista ordenada y su posicion en la misma, tenga en cuenta que la lista que introduzca NO puede tener elementos repetidos")
     l=[]
 n = int(input("Ingrese la cantidad de números enteros que quiere enlistar:"))
 
