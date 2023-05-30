@@ -2,7 +2,7 @@
 #Adicionalmente, el programa indicará el índice del número en el arreglo.
 #La funcion busqueda binaria funciona para listas de numeros ordenados sin valores repetidos, tenga eso en cuenta al usar esta funcion.
 #
-
+#
 def binary_search(l, objeto, min=None, max=None):
     if min is None:
         min = 0
