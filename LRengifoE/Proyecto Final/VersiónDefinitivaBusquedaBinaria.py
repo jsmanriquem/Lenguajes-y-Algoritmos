@@ -35,11 +35,11 @@ if __name__=='__main__':
 n = int(input("Ingrese la cantidad de números enteros que quiere enlistar:"))
 
 for x in range(n):
-    valor=int(input("Ingrese número entero de la lista y pulse enter para el siguiente "))
+    valor=int(input("Ingrese el primer número de la lista y pulse "Enter" para digitar el siguiente "))
     l.append(valor)
 
 print(l)
-print("Ingrese el número que desea comprobar si pertenece a la lista")
+print("Ingrese el número que desea verificar su existencia en la lista")
 objeto = int(input())
 
 if binary_search(l, objeto) > -1:
