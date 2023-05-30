@@ -1,6 +1,7 @@
 import tkinter
 import random
-#Camila Pérez 
+#Camila Pérez 20221107043
+#Angela Malagon 20221107081
 
 def encriptado_con_intercepto():
     n = int(entrada_1.get())
