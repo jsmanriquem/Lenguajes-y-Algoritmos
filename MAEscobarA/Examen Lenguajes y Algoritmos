@@ -1,0 +1,39 @@
+##Juan David Chaparro Rojas y Miguel Alejandro EScobar Aldana.
+##Universidad Distrital Francisco José de Caldas.
+##Lenguajes y algorítmos
+
+# Definición del tablero
+tablero = [
+    ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
+    ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+    ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+]
+
+# Función para imprimir el tablero
+def imprimir_tablero(tablero):
+    for fila in tablero:
+        print(' '.join(fila))
+
+# Función para mover una pieza
+def mover_pieza(tablero, movimiento):
+    columna_origen = ord(movimiento[0]) - ord('a')
+    fila_origen = 8 - int(movimiento[1])
+    columna_destino = ord(movimiento[2]) - ord('a')
+    fila_destino = 8 - int(movimiento[3])
+
+    pieza = tablero[fila_origen][columna_origen]
+    tablero[fila_origen][columna_origen] = ' '
+    tablero[fila_destino][columna_destino] = pieza
+
+# Ejemplo de juego
+imprimir_tablero(tablero)
+
+while True:
+    movimiento = input("Ingresa un movimiento (por ejemplo, e2e4): ")
+    mover_pieza(tablero, movimiento)
+    imprimir_tablero(tablero)
