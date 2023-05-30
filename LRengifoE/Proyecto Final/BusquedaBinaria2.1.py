@@ -1,5 +1,6 @@
 #Esta versión DEFINITIVA del proyecto de búsqueda binaria solicita al usuario una lista de números enteros no repetidos y un número que desee conocer si pertenece a la lista. 
 #Adicionalmente, el programa indicará el índice del número en el arreglo.
+#La funcion busqueda binaria funciona para listas de numeros ordenados sin valores repetidos, tenga eso en cuenta al usar esta funcion.
 
 
 def binary_search(l, objeto, min=None, max=None):
