@@ -1,0 +1,28 @@
+
+nombre = input(" Ingresa nombre para tu codigo qr:") ##ingresar nombre
+import qrcode ## Generador de imagenes QR a partir de una cadena de texto 
+## Primero instalar la extencion " pip install qrcode "
+data= input("Ingrese, frase o link del codigo qr a generar: ")
+## Ingresar el lugar en el computador donde desea guardar la imagen 
+##Frase o cadena de texto que desea que seal el QR
+img= qrcode.make(data)
+##Guargar como imagen y creacion de la frase ingresada en codigo QR
+guarda= "/home/smedina31/Documentos/Algoritmos/qr/" + nombre +".jpg"
+##Creacion de variable para guardar el QR
+img.save(guarda)##imagen a guardar
+print("Su archivo quedo guardado en:" + guarda) ##Texto para confimar lugar de guardado 
+
+import cv2
+
+# Abre la imagen
+imagen = cv2.imread("/home/smedina31/Documentos/Algoritmos/qr/" + nombre +".jpg")
+
+# Muestra la imagen
+cv2.imshow('Imagen', imagen)  ## pip install opencv-python
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+##Univesidad Distrital Francisco Jose de Caldas 
+##Walter Stiven Caballero Medina 20221107065
+##Samuel Homez 20221107046
