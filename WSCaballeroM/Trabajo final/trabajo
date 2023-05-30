@@ -23,6 +23,6 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 
-##Univesidad Distrital Franciclsco Jose de Caldas 
+##Univesidad Distrital Francisco Jose de Caldas 
 ##Walter Stiven Caballero Medina 20221107065
 ##Samuel Homez 20221107046
