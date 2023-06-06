@@ -1,11 +1,21 @@
 class Cube:
     def __init__(self):
-        self.cube = [['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
-                     ['o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o'],
-                     ['g', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'g'],
-                     ['r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r'],
-                     ['b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'],
-                     ['y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y']]
+        self.colors = {
+            'O ': '\033[1m\033[37m',  # Blanco
+            ' O': '\033[38;5;208m',  # Naranja
+            'O.': '\033[1m\033[92m',  # Verde
+            '.O': '\033[1m\033[31m',  # Rojo
+            'O,': '\033[1m\033[94m',  # Azúl
+            ',O': '\033[1m\033[93m'   # Amarillo
+        }
+        self.cube = [['O ', 'O ', 'O ', 'O ', 'O ', 'O ', 'O ', 'O ', 'O '],
+                     [' O', ' O', ' O', ' O', ' O', ' O', ' O', ' O', ' O'],
+                     ['O.', 'O.', 'O.', 'O.', 'O.', 'O.', 'O.', 'O.', 'O.'],
+                     ['.O', '.O', '.O', '.O', '.O', '.O', '.O', '.O', '.O'],
+                     ['O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,'],
+                     [',O', ',O', ',O', ',O', ',O', ',O', ',O', ',O', ',O']]
+
+    # Rotar una fila hacia la izquierda
 
     def rotate_row_left(self, row):
         temp = self.cube[0][3 * row:3 * row + 3]
@@ -14,12 +24,18 @@ class Cube:
         self.cube[2][3 * row:3 * row + 3] = self.cube[5][3 * row:3 * row + 3]
         self.cube[5][3 * row:3 * row + 3] = temp
 
+
+    # Rotar una fila hacia la derecha
+
     def rotate_row_right(self, row):
         temp = self.cube[0][3 * row:3 * row + 3]
         self.cube[0][3 * row:3 * row + 3] = self.cube[5][3 * row:3 * row + 3]
         self.cube[5][3 * row:3 * row + 3] = self.cube[2][3 * row:3 * row + 3]
         self.cube[2][3 * row:3 * row + 3] = self.cube[4][3 * row:3 * row + 3]
         self.cube[4][3 * row:3 * row + 3] = temp
+
+
+    # Rotar una columna hacia arriba
 
     def rotate_column_up(self, col):
         temp = [self.cube[0][col], self.cube[0][col + 3], self.cube[0][col + 6]]
@@ -35,6 +51,10 @@ class Cube:
         self.cube[1][col] = temp[0]
         self.cube[1][col + 3] = temp[1]
         self.cube[1][col + 6] = temp[2]
+
+
+    # Rotar una columna hacia abajo
+
 
     def rotate_column_down(self, col):
         temp = [self.cube[0][col], self.cube[0][col + 3], self.cube[0][col + 6]]
@@ -52,28 +72,13 @@ class Cube:
         self.cube[3][col + 6] = temp[2]
 
     def print_cube(self):
-        print("         ---------------")
-        print("        | " + self.cube[0][0] + " | " + self.cube[0][1] + " | " + self.cube[0][2] + " |")
-        print("        |---|---|---|")
-        print("        | " + self.cube[0][3] + " | " + self.cube[0][4] + " | " + self.cube[0][5] + " |")
-        print("        |---|---|---|")
-        print("        | " + self.cube[0][6] + " | " + self.cube[0][7] + " | " + self.cube[0][8] + " |")
-        print("-----------------------------")
-        for i in range(1, 5):
-            print("         ---------------")
-            print("        | " + self.cube[i][0] + " | " + self.cube[i][1] + " | " + self.cube[i][2] + " |")
-            print("        |---|---|---|")
-            print("        | " + self.cube[i][3] + " | " + self.cube[i][4] + " | " + self.cube[i][5] + " |")
-            print("        |---|---|---|")
-            print("        | " + self.cube[i][6] + " | " + self.cube[i][7] + " | " + self.cube[i][8] + " |")
-            print("-----------------------------")
-            print("|---|---|---|---|---|---|---|---|---|")
-        print("        | " + self.cube[5][0] + " | " + self.cube[5][1] + " | " + self.cube[5][2] + " |")
-        print("        |---|---|---|")
-        print("        | " + self.cube[5][3] + " | " + self.cube[5][4] + " | " + self.cube[5][5] + " |")
-        print("        |---|---|---|")
-        print("        | " + self.cube[5][6] + " | " + self.cube[5][7] + " | " + self.cube[5][8] + " |")
-        print("         ---------------")
+        for i in range(0, 6):
+            print("----------------")
+            for j in range(3):
+                print(f"| {self.colors[self.cube[i][3 * j]]}{self.cube[i][3 * j]} \033[0m", end="")
+                print(f"| {self.colors[self.cube[i][3 * j + 1]]}{self.cube[i][3 * j + 1]} \033[0m", end="")
+                print(f"| {self.colors[self.cube[i][3 * j + 2]]}{self.cube[i][3 * j + 2]} \033[0m|")
+            print("----------------")
 
 
 def main():
@@ -81,14 +86,14 @@ def main():
     cube.print_cube()
 
     while True:
-        print("\n==============================")
+        print("\n============================")
         print("Selecciona una opción:")
         print("1. Rotar fila hacia la izquierda")
         print("2. Rotar fila hacia la derecha")
         print("3. Rotar columna hacia arriba")
         print("4. Rotar columna hacia abajo")
         print("5. Salir")
-        print("==============================")
+        print("============================")
 
         option = int(input("Opción: "))
 
@@ -114,4 +119,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
