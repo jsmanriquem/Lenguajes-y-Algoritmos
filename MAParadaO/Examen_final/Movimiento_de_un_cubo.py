@@ -1,3 +1,5 @@
+import random
+
 class Cube:
     def __init__(self):
         self.colors = {
@@ -14,6 +16,7 @@ class Cube:
                      ['.O', '.O', '.O', '.O', '.O', '.O', '.O', '.O', '.O'],
                      ['O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,'],
                      [',O', ',O', ',O', ',O', ',O', ',O', ',O', ',O', ',O']]
+
 
     # Rotar una fila hacia la izquierda
 
@@ -71,6 +74,43 @@ class Cube:
         self.cube[3][col + 3] = temp[1]
         self.cube[3][col + 6] = temp[2]
 
+
+    
+    # Armar el cubo
+
+    def armar_cubo(self):
+        self.cube = [['O ', 'O ', 'O ', 'O ', 'O ', 'O ', 'O ', 'O ', 'O '],
+                     [' O', ' O', ' O', ' O', ' O', ' O', ' O', ' O', ' O'],
+                     ['O.', 'O.', 'O.', 'O.', 'O.', 'O.', 'O.', 'O.', 'O.'],
+                     ['.O', '.O', '.O', '.O', '.O', '.O', '.O', '.O', '.O'],
+                     ['O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,', 'O,'],
+                     [',O', ',O', ',O', ',O', ',O', ',O', ',O', ',O', ',O']]
+
+
+    # Desarmar el cubo
+
+    def desarmar_cubo(self):
+
+        # Rotar filas aleatoriamente
+
+        for _ in range(random.randint(10, 40)):
+            row = random.randint(0, 2)
+            direction = random.choice(['left', 'right'])
+            if direction == 'left':
+                self.rotate_row_left(row)
+            else:
+                self.rotate_row_right(row)
+
+        # Rotar columnas aleatoriamente
+        
+        for _ in range(random.randint(10, 40)):
+            col = random.randint(0, 2)
+            direction = random.choice(['up', 'down'])
+            if direction == 'up':
+                self.rotate_column_up(col)
+            else:
+                self.rotate_column_down(col)
+
     def print_cube(self):
         for i in range(0, 6):
             print("----------------")
@@ -92,7 +132,9 @@ def main():
         print("2. Rotar fila hacia la derecha")
         print("3. Rotar columna hacia arriba")
         print("4. Rotar columna hacia abajo")
-        print("5. Salir")
+        print("5. Armar el cubo")
+        print("6. Desarmar el cubo")
+        print("7. Salir")
         print("============================")
 
         option = int(input("Opción: "))
@@ -110,6 +152,10 @@ def main():
             col = int(input("Indica el número de la columna a rotar (0-2): "))
             cube.rotate_column_down(col)
         elif option == 5:
+            cube.armar_cubo()
+        elif option == 6:
+            cube.desarmar_cubo()
+        elif option == 7:
             break
         else:
             print("Opción inválida. Intenta nuevamente.")
