@@ -10,10 +10,10 @@ me = 9.109*pow(10,-31) #kg
 t = 0.01
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
-O1 = [0,0,0,4*mp,2*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C]
-V1 = [10,-15,1] #[vx,vy,vz] [mm][s^-1]
+O1 = [0,0,0,1*mp,1*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C]
+V1 = [12.5,-15,1] #[vx,vy,vz] [mm][s^-1]
 O2 = [-1,2,25,1*mp,-1*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C]
-V2 = [10,15,0.001]#[vx,vy,vz] [mm][s^-1]
+V2 = [12.5,15,0.002]#[vx,vy,vz] [mm][s^-1]
 
 def GUpdater(CoM,n):
      Obj1 = [[O1[0]],[O1[1]],[O1[2]]]
@@ -41,6 +41,18 @@ def GUpdater(CoM,n):
              Obj2[j].append(O2[j])
      return [Obj1,Obj2,CoM_h]
 
+def animator(k):
+     Graph.set_offsets([[CoM_Vec[0][k],CoM_Vec[1][k]],[O1_Vec[0][k],O1_Vec[1][k]],[O2_Vec[0][k],O2_Vec[1][k]]])
+     Graph.set_3d_properties([CoM_Vec[2][k],O1_Vec[2][k],O2_Vec[2][k]],'z')
+     Path1.set_data_3d(O1_Vec[0][:k],O1_Vec[1][:k],O1_Vec[2][:k])
+     Path2.set_data_3d(O2_Vec[0][:k],O2_Vec[1][:k],O2_Vec[2][:k])
+     if k < (len(O1_Vec[0])-20):
+         L = k+20
+         ax.set_xlim([min(min(O1_Vec[0][:L]),min(O2_Vec[0][:L])),max(max(O1_Vec[0][:L]),max(O2_Vec[0][:L]))])
+         ax.set_ylim([min(min(O1_Vec[1][:L]),min(O2_Vec[1][:L])),max(max(O1_Vec[1][:L]),max(O2_Vec[1][:L]))])
+         ax.set_zlim([min(min(O1_Vec[2][:L]),min(O2_Vec[2][:L])),max(max(O1_Vec[2][:L]),max(O2_Vec[2][:L]))])
+     return (Graph, Path1, Path2)
+
 
 #ask variables
 fr = int(input('Frames: '))
@@ -61,58 +73,42 @@ for i in range(2):
                 O2 = [x,y,z,O2[3],O2[4]]
                 V2 = [Vx,Vy,Vz]
 
+
+#Start
 CoM = [0,0,0]
 for i in range(3):
      CoM[i] = ((O1[i]*O1[3])+(O2[i]*O2[3]))/(O1[3]+O2[3])
-
-Graph = ax.scatter(
-     [CoM[0],O1[0],O2[0]],
-     [CoM[1],O1[1],O2[1]],
-     [CoM[2],O1[2],O2[2]],
-     #s = [20,O1[3]*20,O2[3]*20],
-     c = [[0,0,0],[0,0,1],[1,0,0]]
-    )
-Path1 = ax.plot(O1[0],O1[1],O1[2],'b-')[0]
-Path2 = ax.plot(O2[0],O2[1],O2[2],'r-')[0]
-
-#O1_Vec = Updater(O1,V1,fr)
-#O2_Vec = Updater(O2,V2,fr)
 
 Unv = GUpdater(CoM,fr)
 O1_Vec = Unv[0]
 O2_Vec = Unv[1]
 CoM_Vec = Unv[2]
 
-L = 10
-ax.set_xlim([min(min(O1_Vec[0][0:L]),min(O2_Vec[0][0:L])),max(max(O1_Vec[0][0:L]),max(O2_Vec[0][0:L]))])
-ax.set_ylim([min(min(O1_Vec[1][0:L]),min(O2_Vec[1][0:L])),max(max(O1_Vec[1][0:L]),max(O2_Vec[1][0:L]))])
-ax.set_zlim([min(min(O1_Vec[2][0:L]),min(O2_Vec[2][0:L])),max(max(O1_Vec[2][0:L]),max(O2_Vec[2][0:L]))])
 
-def animator(k):
-     Graph.set_offsets([[CoM_Vec[0][k],CoM_Vec[1][k]],[O1_Vec[0][k],O1_Vec[1][k]],[O2_Vec[0][k],O2_Vec[1][k]]])
-     Graph.set_3d_properties([CoM_Vec[2][k],O1_Vec[2][k],O2_Vec[2][k]],'z')
-     Path1.set_data_3d(O1_Vec[0][:k],O1_Vec[1][:k],O1_Vec[2][:k])
-     Path2.set_data_3d(O2_Vec[0][:k],O2_Vec[1][:k],O2_Vec[2][:k])
-     if k < (len(O1_Vec[0])-10):
-         L = k+10
-         ax.set_xlim([min(min(O1_Vec[0][:L]),min(O2_Vec[0][:L])),max(max(O1_Vec[0][:L]),max(O2_Vec[0][:L]))])
-         ax.set_ylim([min(min(O1_Vec[1][:L]),min(O2_Vec[1][:L])),max(max(O1_Vec[1][:L]),max(O2_Vec[1][:L]))])
-         ax.set_zlim([min(min(O1_Vec[2][:L]),min(O2_Vec[2][:L])),max(max(O1_Vec[2][:L]),max(O2_Vec[2][:L]))])
-     return (Graph, Path1, Path2)
+rep = input('Start(Y/N): ')
+frame = input('Reference(C/I): ')
 
-rep = input('Start: ')
-if rep == "Y":
+
+if (frame == "C") and (rep != 'N'):
+     for j in range(len(O1_Vec[0])):
+         for i in range(3):
+             O1_Vec[i][j] = (CoM_Vec[i][j] - O1_Vec[i][j])
+             O2_Vec[i][j] = (CoM_Vec[i][j] - O2_Vec[i][j])
+             CoM_Vec[i][j] = 0
+
+Graph = ax.scatter(
+     [CoM_Vec[0][0],O1_Vec[0][0],O2_Vec[0][0]],
+     [CoM_Vec[1][0],O1_Vec[1][0],O2_Vec[1][0]],
+     [CoM_Vec[2][0],O1_Vec[2][0],O2_Vec[2][0]],
+     c = [[0,0,0],[0,0,1],[1,0,0]]
+    )
+Path1 = ax.plot(O1_Vec[0][0],O1_Vec[1][0],O1_Vec[2][0],'b-')[0]
+Path2 = ax.plot(O2_Vec[0][0],O2_Vec[1][0],O2_Vec[2][0],'r-')[0]
+
+if rep != 'N':
+     L = 20
+     ax.set_xlim([min(min(O1_Vec[0][0:L]),min(O2_Vec[0][0:L])),max(max(O1_Vec[0][0:L]),max(O2_Vec[0][0:L]))])
+     ax.set_ylim([min(min(O1_Vec[1][0:L]),min(O2_Vec[1][0:L])),max(max(O1_Vec[1][0:L]),max(O2_Vec[1][0:L]))])
+     ax.set_zlim([min(min(O1_Vec[2][0:L]),min(O2_Vec[2][0:L])),max(max(O1_Vec[2][0:L]),max(O2_Vec[2][0:L]))])
      anim = animation.FuncAnimation(fig,animator,repeat = True,frames = len(O1_Vec[0]), interval = int(t*20000))
      plt.show()
-#print(np.random.random()*5)
-
-
-
-#x_values = []
-#y_values = []
-#for i in range(10):
-#    x_values.append(i)
-#    y_values.append(2*i)
-#    ax.scatter(x_values,y_values)
-#    plt.pause(0.01)
-#plt.show()
