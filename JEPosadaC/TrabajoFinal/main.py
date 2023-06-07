@@ -1,3 +1,6 @@
+#Laura Catalina Lopez Muñoz código 20221107069
+#Juan Esteban Posada Celis código 20212107010
+
 import argparse
 import pygame
 from gamemanager import GameManager
