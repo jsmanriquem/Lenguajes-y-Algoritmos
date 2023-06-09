@@ -10,14 +10,14 @@ me = 9.109*pow(10,-31) #kg
 t = 0.02
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
-O1 = [0,0,0,4*mp,2*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C]
-V1 = [20,-10,0] #[vx,vy,vz] [mm][s^-1]   #[25,10,0]
-O2 = [-15,-10,30,1*mp,-1*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C]  #[10,-5,27.5,1*mp,-1*qe]
-V2 = [50,-20,-5]#[vx,vy,vz] [mm][s^-1]
-#O1 = [0,0,0,1*mp,1*qe]
-#V1 = [0,0,0] #[vx,vy,vz]
-#O2 = [100,0,5,1*me,-1*qe]
-#V2 = [500,-1000,2]
+O1 = [-14.2,20,11.2,4*mp,2*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C] [0,0,0,4*mp,2*qe]
+V1 = [23.1,12.4,-4.1] #[vx,vy,vz] [mm][s^-1] [20,-10,0]
+O2 = [18.9,-13.6,16.4,1*mp,-1*qe] #[x,y,z,m,q] [mm,mm,mm,kg,C] [-15,-10,30,1*mp,-1*qe]
+V2 = [22.8,-10.7,-23.9]#[vx,vy,vz] [mm][s^-1] [50,-20,-5]
+#O1 = [0,0,0,1*mp,1*qe] #[-14.20425898414694, 20.014689133979722, 11.189752936045409, 6.6904e-27, 3.2000000000000003e-19]
+#V1 = [0,0,0] #[vx,vy,vz] #[23.08780822084985, 12.426020005944679, -4.102007123884992]
+#O2 = [100,0,5,1*me,-1*qe] #[18.906962655879596, -13.616540303232588, 16.391123783983346, 6.6904e-27, 3.2000000000000003e-19]
+#V2 = [500,-1000,2] #[22.825001078257877, -10.682051587849378, -23.90572949807635]
 
 def GUpdater(CoM,n):
      Obj1 = [[O1[0]],[O1[1]],[O1[2]]]
@@ -50,7 +50,7 @@ def animator(k):
      Graph.set_3d_properties([CoM_Vec[2][k],O1_Vec[2][k],O2_Vec[2][k]],'z')
      Path1.set_data_3d(O1_Vec[0][:k],O1_Vec[1][:k],O1_Vec[2][:k])
      Path2.set_data_3d(O2_Vec[0][:k],O2_Vec[1][:k],O2_Vec[2][:k])
-     ax.view_init(elev = camera[0][k], azim = camera[1][k])
+     #ax.view_init(elev = camera[0][k], azim = camera[1][k])
      
      if k < (len(O1_Vec[0])-50):
          L = k+50
@@ -153,6 +153,6 @@ if rep != 'N':
      ax.set_zlim(lim[2])
      anim = animation.FuncAnimation(fig,animator,repeat = True,frames = len(O1_Vec[0]), interval = int(t*10000))
      plt.show()
-     anim.save(writer = 'pillow', filename = 'TwoBodyAnimC.png',fps = 25)
+     #anim.save(writer = 'pillow', filename = 'TwoBodyAnimC.png',fps = 25)
 
 #.avi   .mov
